@@ -1,0 +1,20 @@
+hw6: main.o add.o rm.o search.o display.o
+	gcc main.o add.o rm.o search.o display.o -o hw6
+
+main.o: main.c
+	gcc main.c -c -g obj/main.o
+
+add.o: add.c
+	gcc -c add.c -g
+
+rm.o: rm.c
+	gcc -c rm.c
+
+search.o: search.c
+	gcc -c search.c
+
+display.o: display.c
+	gcc -c display.c
+
+clean:
+	rm -rf *.o hw6
