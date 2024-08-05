@@ -9,10 +9,12 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
 
 $(BUILD_DIR)/hw9: $(OBJECTS)
+	-mkdir $(BUILD_DIR)
 	$(CC) $(CFLAGS) $^ -o $@ -lncurses
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -g -c $< -o $@ 
+	-mkdir $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 .PHONY: clean
 
