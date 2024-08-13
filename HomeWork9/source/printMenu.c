@@ -3,7 +3,6 @@
 extern int maxX, maxY;
 
 void printMenu(WINDOW *win, char *path, int *highlight, int offset) {
-    
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     werase(win);
 
