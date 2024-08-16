@@ -89,14 +89,18 @@ void* loader(void* args)
     while (signal_of_customer_need[0] != 0 || signal_of_customer_need[1] != 0 || signal_of_customer_need[2] != 0) 
     {
         int num_shop = rand() % 5;
-
+        if (shops[num_shop].status == 0)
+        {
         pthread_mutex_lock(&mtx[num_shop]);
+        shops[num_shop].status = 1;
         printf("loader: went into shop #%d, there were %d, I put 5000. Fell asleep\n", num_shop, shops[num_shop].balance);
         shops[num_shop].balance += 5000;
 
         pthread_mutex_unlock(&mtx[num_shop]);
+        shops[num_shop].status = 0;
 
         sleep(1);
+        }
 
     }
 
