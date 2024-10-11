@@ -1,0 +1,45 @@
+# Определение компилятора и флагов
+CC = gcc
+CFLAGS = -Wall -Wextra
+
+# Директории
+BROADCAST_DIR = broadcast
+MULTICAST_DIR = multicast
+
+# Исполняемые файлы
+BROADCAST_CLIENT = $(BROADCAST_DIR)/x/client
+BROADCAST_SERVER = $(BROADCAST_DIR)/x/server
+MULTICAST_CLIENT = $(MULTICAST_DIR)/x/client
+MULTICAST_SERVER = $(MULTICAST_DIR)/x/server
+
+# Исходные файлы
+BROADCAST_CLIENT_SRC = $(BROADCAST_DIR)/client/main.c
+BROADCAST_SERVER_SRC = $(BROADCAST_DIR)/server/main.c
+MULTICAST_CLIENT_SRC = $(MULTICAST_DIR)/client/main.c
+MULTICAST_SERVER_SRC = $(MULTICAST_DIR)/server/main.c
+
+# Основная цель
+.PHONY: all clean
+
+all: $(BROADCAST_CLIENT) $(BROADCAST_SERVER) $(MULTICAST_CLIENT) $(MULTICAST_SERVER)
+
+$(BROADCAST_CLIENT): $(BROADCAST_CLIENT_SRC)
+	@mkdir -p $(BROADCAST_DIR)/x
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(BROADCAST_SERVER): $(BROADCAST_SERVER_SRC)
+	@mkdir -p $(BROADCAST_DIR)/x
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(MULTICAST_CLIENT): $(MULTICAST_CLIENT_SRC)
+	@mkdir -p $(MULTICAST_DIR)/x
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(MULTICAST_SERVER): $(MULTICAST_SERVER_SRC)
+	@mkdir -p $(MULTICAST_DIR)/x
+	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	rm -f $(BROADCAST_CLIENT) $(BROADCAST_SERVER) $(MULTICAST_CLIENT) $(MULTICAST_SERVER)
+	rm -rf $(BROADCAST_DIR)/x $(MULTICAST_DIR)/x
+

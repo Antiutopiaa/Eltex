@@ -1,0 +1,9 @@
+1 AF_LOCAL tcp
+2 AF_LOCAL udp
+3 AF_INET tcp
+4 AF_INET udp
+
+common task:
+    client send some message to server
+    server recv & print, edit and send to client this message
+    client recv & print
